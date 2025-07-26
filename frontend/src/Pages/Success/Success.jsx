@@ -7,20 +7,17 @@ const Success = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCountdown((prevCount) => {
-        if (prevCount <= 1) {
-          clearInterval(intervalId);
-          navigate("/");
-          return 0; // Stop at 0, avoid extra rerender
-        }
-        return prevCount - 1;
-      });
+    if (countdown <= 0) {
+      navigate("/");
+      return;
+    }
+
+    const timeoutId = setTimeout(() => {
+      setCountdown(countdown - 1);
     }, 1000);
 
-    // Clean up the interval on unmount
-    return () => clearInterval(intervalId);
-  }, [navigate]);
+    return () => clearTimeout(timeoutId);
+  }, [countdown, navigate]);
 
   return (
     <section className="notFound">

@@ -17,7 +17,8 @@ const Reservation = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://restaurant-reservation-oia6.onrender.com/api/v1/reservation/send",
+        // "https://restaurant-reservation-chgn.onrender.com/api/v1/reservation/send",
+        "/api/v1/reservation/send",
         { firstName, lastName, email, phone, date, time },
         {
           headers: {
